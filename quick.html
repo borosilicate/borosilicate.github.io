@@ -35,7 +35,25 @@
 
 <div id="map" style="width: 600px; height: 400px;"></div>
 <script>
+	function getColor(d) {
+        return d === 'Road Surface'  ? "#de2d26" :
+               d === 'Signage'  ? "#377eb8" :
+               d === 'Line Markings' ? "#4daf4a" :
+               d === 'Roadside Hazards' ? "#984ea3" :
+                            "#ff7f00";
+    }
 
+    function style(feature) {
+        return {
+            weight: 1.5,
+            opacity: 1,
+            fillOpacity: 1,
+            radius: 6,
+            fillColor: getColor(feature.properties.TypeOfIssue),
+            color: "grey"
+
+        };
+    }
 	const map = L.map('map').setView([42.36008, -71.0584], 10);
 
 	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
